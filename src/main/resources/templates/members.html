@@ -28,20 +28,18 @@
 
                     <a th:href="${'/members/delete-member?member_id=' + member.member_id}" class="delete-button">delete</a>
 
-                    <button class="open-button" onclick="openForm()">Open Form</button>
-
-                    <div class="form-popup" id="myForm">
-                        <form action="/action_page.php" class="form-container">
+                    <div class="form-popup" id="edit-member-form">
+                        <form th:action="@{/members/edit-member}" method="post" class="form-container">
                             <h1>Edit User</h1>
-
+                            <b>ID</b>
+                            <input type="text" th:value=${member.member_id} name="member_id" />
                             <b>Name</b>
-                            <input type="text" placeholder="Bob" name="name" required>
-                            <button type="submit" class="btn" name="name" th:href="${'/members/edit-member?member_id=' + member.member_id + '&new_name=' + name}">Save Changes</button>
-                            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                            <input type="text" placeholder="Bob" name="new_name" required />
+                            <button type="submit" class="btn">Save Changes</button>
+                            <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
                         </form>
                     </div>
-
-                    <a  class="delete-button">edit</a>
+                    <button class="delete-button" onclick="openForm()">Edit</button>
                 </div>
             </div>
 
@@ -65,7 +63,15 @@
                 </div>
             </form>
         </div>
+        <script>
+            function openForm() {
+              document.getElementById("edit-member-form").style.display = "block";
+            }
 
+            function closeForm() {
+              document.getElementById("edit-member-form").style.display = "none";
+            }
+        </script>
     </body>
 
 
