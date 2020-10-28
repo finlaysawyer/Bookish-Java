@@ -34,14 +34,6 @@ public class BookController {
         return new ModelAndView("books", "model", booksPageModel);
     }
 
-    @RequestMapping("/add-book")
-    RedirectView addBook(@ModelAttribute Book book) {
-
-        bookService.addBook(book);
-
-        return new RedirectView("/books");
-    }
-
     @RequestMapping("/delete-book")
     RedirectView deleteBook(@RequestParam int book_id) {
 
@@ -59,5 +51,16 @@ public class BookController {
         viewBookPageModel.setBook(allBooks.get(0));
 
         return new ModelAndView("view-book", "model", viewBookPageModel);
+    }
+
+    @RequestMapping("/add-book")
+    ModelAndView addBook() {
+        return new ModelAndView("add-book");
+    }
+
+    @RequestMapping("/add-book/action")
+    RedirectView addBookAction(@ModelAttribute Book book) {
+        bookService.addBook(book);
+        return new RedirectView("/books");
     }
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.AboutPageModel"-->
+
+    <head>
+        <title>Bookish - Add Book</title>
+
+        <link rel="stylesheet" href="/styles/general.css"/>
+        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/about.css"/>
+    </head>
+
+    <body>
+
+        <div th:replace="fragments/navbar :: navbar">
+            <!-- This element is replaced by the HTML in fragments/navbar.html -->
+        </div>
+
+        <h2>Add a book:</h2>
+        <form th:action="@{/books/add-book/action}" method="post">
+            <div class="add-tech-row">
+                <label>
+                    <span>Book ID: </span>
+                    <input type="text" name="book_id">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <label>
+                    <span>Title: </span>
+                    <input type="text" name="title">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <label>
+                    <span>Author: </span>
+                    <input type="text" name="author">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <label>
+                    <span>ISBN: </span>
+                    <input type="text" name="isbn">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <label>
+                    <span>Copies: </span>
+                    <input type="text" name="Copies">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <span><!-- spacer --></span>
+                <input type="submit" value="Add book" />
+            </div>
+        </form>
+
+    </body>
+
+
+</html>

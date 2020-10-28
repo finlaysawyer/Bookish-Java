@@ -9,6 +9,17 @@
         <link rel="stylesheet" href="/styles/general.css"/>
         <link rel="stylesheet" href="/styles/navbar.css"/>
         <link rel="stylesheet" href="/styles/about.css"/>
+
+        <style>
+            td, th {
+                border: 2px inset #aaaaaa;
+                text-align: left;
+                padding: 8px;
+                width: 100px;
+                white-space: nowrap;
+            }
+        </style>
+
     </head>
 
     <body>
@@ -17,58 +28,26 @@
             <!-- This element is replaced by the HTML in fragments/navbar.html -->
         </div>
 
-        <div class="container">
-            <h2>Books List</h2>
+        <h2>Books List</h2>
 
-            <div class="technology-list">
-                <div th:each="book : ${model.books}" class="technology">
-                    <h1 th:text="${book.title}"></h1>
-                    <h2 th:text="${book.author}"></h2>
-                    <small th:text="${book.isbn}"></small>
-                    <small th:text="${book.copies}"></small>
+        <a th:href="${'/books/add-book'}">Add Book</a><br>
 
-                    <a th:href="${'/books/delete-book?book_id=' + book.book_id}" class="delete-button">delete</a>
-                </div>
-            </div>
-
-            <h2>Add a book:</h2>
-            <form th:action="@{/books/add-book}" method="post">
-                <div class="add-tech-row">
-                    <label>
-                        <span>Book ID: </span>
-                        <input type="text" name="book_id">
-                    </label>
-                </div>
-                <div class="add-tech-row">
-                    <label>
-                        <span>Title: </span>
-                        <input type="text" name="title">
-                    </label>
-                </div>
-                <div class="add-tech-row">
-                    <label>
-                        <span>Author: </span>
-                        <input type="text" name="author">
-                    </label>
-                </div>
-                <div class="add-tech-row">
-                    <label>
-                        <span>ISBN: </span>
-                        <input type="text" name="isbn">
-                    </label>
-                </div>
-                <div class="add-tech-row">
-                    <label>
-                        <span>Copies: </span>
-                        <input type="text" name="Copies">
-                    </label>
-                </div>
-                <div class="add-tech-row">
-                    <span><!-- spacer --></span>
-                    <input type="submit" value="Add book" />
-                </div>
-            </form>
-        </div>
+        <table>
+            <tr>
+                <th>TITLE 📕</th>
+                <th>AUTHOR ✏️</th>
+                <th>ISBN 🔢️</th>
+                <th>COPIES 📚</th>
+                <th>VIEW 🔍</th>
+            </tr>
+            <tr th:each="book : ${model.books}">
+                <td><span th:text="${book.title}"></span></td>
+                <td><span th:text="${book.author}"></span></td>
+                <td><span th:text="${book.isbn}"></span></td>
+                <td><span th:text="${book.copies}"></span></td>
+                <td><a th:href="${'/books/view-book?book_id=' + book.book_id}">View</a></td>
+            </tr>
+        </table>
 
     </body>
 
