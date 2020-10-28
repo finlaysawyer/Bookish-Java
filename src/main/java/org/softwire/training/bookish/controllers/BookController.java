@@ -1,11 +1,9 @@
 package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.models.database.Book;
-import org.softwire.training.bookish.models.database.Technology;
-import org.softwire.training.bookish.models.page.AboutPageModel;
 import org.softwire.training.bookish.models.page.BooksPageModel;
+import org.softwire.training.bookish.models.page.ViewBookPageModel;
 import org.softwire.training.bookish.services.BookService;
-import org.softwire.training.bookish.services.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -30,7 +28,6 @@ public class BookController {
     @RequestMapping("")
     ModelAndView books() {
         List<Book> allBooks = bookService.getAllBooks();
-
         BooksPageModel booksPageModel = new BooksPageModel();
         booksPageModel.setBooks(allBooks);
 
@@ -51,5 +48,16 @@ public class BookController {
         bookService.deleteBook(book_id);
 
         return new RedirectView("/books");
+    }
+
+    @RequestMapping("/view-book")
+    ModelAndView viewBook(@RequestParam int book_id) {
+
+        List<Book> allBooks = bookService.getBook(book_id);
+        ViewBookPageModel viewBookPageModel = new ViewBookPageModel();
+        System.out.println(allBooks.toString());
+        viewBookPageModel.setBook(allBooks.get(0));
+
+        return new ModelAndView("view-book", "model", viewBookPageModel);
     }
 }

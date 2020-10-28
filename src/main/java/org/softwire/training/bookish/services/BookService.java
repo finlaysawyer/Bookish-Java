@@ -17,6 +17,14 @@ public class BookService extends DatabaseService {
         );
     }
 
+    public List<Book> getBook(int id) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM books WHERE book_id = " + Integer.toString(id))
+                        .mapToBean(Book.class)
+                        .list()
+        );
+    }
+
     public void addBook(Book book) {
         jdbi.useHandle(handle ->
                 handle.createUpdate("INSERT INTO books VALUES (:book_id, :title, :author, :isbn, :copies)")
