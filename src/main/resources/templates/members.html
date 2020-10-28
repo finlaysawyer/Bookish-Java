@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.MembersPageModel"-->
+
+    <head>
+        <title>Bookish - Members</title>
+
+        <link rel="stylesheet" href="/styles/general.css"/>
+        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/about.css"/>
+        <link rel="stylesheet" href="/styles/popup.css"/>
+    </head>
+
+    <body>
+
+        <div th:replace="fragments/navbar :: navbar">
+            <!-- This element is replaced by the HTML in fragments/navbar.html -->
+        </div>
+
+        <div class="container">
+            <h2>Member List</h2>
+
+            <div class="technology-list">
+                <div th:each="member : ${model.members}" class="technology">
+                    <h1 th:text="${member.name}"></h1>
+                    <small th:text="${member.member_id}"></small>
+
+                    <a th:href="${'/members/delete-member?member_id=' + member.member_id}" class="delete-button">delete</a>
+
+                    <button class="open-button" onclick="openForm()">Open Form</button>
+
+                    <div class="form-popup" id="myForm">
+                        <form action="/action_page.php" class="form-container">
+                            <h1>Edit User</h1>
+
+                            <b>Name</b>
+                            <input type="text" placeholder="Bob" name="name" required>
+                            <button type="submit" class="btn" name="name" th:href="${'/members/edit-member?member_id=' + member.member_id + '&new_name=' + name}">Save Changes</button>
+                            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                        </form>
+                    </div>
+
+                    <a  class="delete-button">edit</a>
+                </div>
+            </div>
+
+            <h2>Add a Member:</h2>
+            <form th:action="@{/members/add-member}" method="post">
+                <div class="add-tech-row">
+                    <label>
+                        <span>Member ID: </span>
+                        <input type="text" name="member_id">
+                    </label>
+                </div>
+                <div class="add-tech-row">
+                    <label>
+                        <span>Member Name: </span>
+                        <input type="text" name="name">
+                    </label>
+                </div>
+                <div class="add-tech-row">
+                    <span><!-- spacer --></span>
+                    <input type="submit" value="Add Member" />
+                </div>
+            </form>
+        </div>
+
+    </body>
+
+
+</html>
