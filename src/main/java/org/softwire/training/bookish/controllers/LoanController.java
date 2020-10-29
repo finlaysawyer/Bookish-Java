@@ -1,11 +1,8 @@
 package org.softwire.training.bookish.controllers;
 
 import org.softwire.training.bookish.models.database.Loan;
-import org.softwire.training.bookish.models.database.Member;
 import org.softwire.training.bookish.models.page.LoansPageModel;
-import org.softwire.training.bookish.models.page.MembersPageModel;
 import org.softwire.training.bookish.services.LoansService;
-import org.softwire.training.bookish.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +14,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/members")
+@RequestMapping("/loans")
 public class LoanController {
 
     private final LoansService loansService;
