@@ -17,6 +17,14 @@ public class MemberService extends DatabaseService {
         );
     }
 
+    public List<Member> getMemberSearch(String name) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM members WHERE name LIKE '%" + name + "%'")
+                        .mapToBean(Member.class)
+                        .list()
+        );
+    }
+
     public void addMember(Member member) {
         jdbi.useHandle(handle ->
                 handle.createUpdate("INSERT INTO members VALUES (:member_id, :name)")

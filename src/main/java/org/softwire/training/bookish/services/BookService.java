@@ -25,6 +25,14 @@ public class BookService extends DatabaseService {
         );
     }
 
+    public List<Book> getBookSearch(String name) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM books WHERE title LIKE '%" + name + "%'")
+                        .mapToBean(Book.class)
+                        .list()
+        );
+    }
+
     public void addBook(Book book) {
         jdbi.useHandle(handle ->
                 handle.createUpdate("INSERT INTO books VALUES (:book_id, :title, :author, :isbn, :copies)")

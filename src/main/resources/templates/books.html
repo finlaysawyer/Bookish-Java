@@ -32,6 +32,15 @@
 
         <a th:href="${'/books/add-book'}">Add Book</a><br>
 
+        <form th:action="@{/books}" method="post">
+            <div class="add-tech-row">
+                <label>
+                    <span>Search: </span>
+                    <input type="text" name="search">
+                </label>
+            </div>
+        </form><br>
+
         <table>
             <tr>
                 <th>TITLE 📕</th>

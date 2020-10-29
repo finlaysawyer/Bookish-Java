@@ -28,17 +28,25 @@ public class MemberController {
     }
 
     @RequestMapping("")
-    ModelAndView members() {
-        List<Member> allMembers = memberService.getAllMembers();
-
+    ModelAndView members(@RequestParam(value = "search", required = false) String search) {
         MembersPageModel membersPageModel = new MembersPageModel();
+        List<Member> allMembers;
+        if (search == null) {
+            allMembers = memberService.getAllMembers();
+        } else {
+            allMembers = memberService.getMemberSearch(search);
+        }
         membersPageModel.setMembers(allMembers);
-
         return new ModelAndView("members", "model", membersPageModel);
     }
 
     @RequestMapping("/add-member")
-    RedirectView addMember(@ModelAttribute Member member) {
+    ModelAndView addMember() {
+        return new ModelAndView("add-member");
+    }
+
+    @RequestMapping("/add-member/action")
+    RedirectView addMemberAction(@ModelAttribute Member member) {
 
         memberService.addMember(member);
 

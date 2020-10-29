@@ -26,11 +26,15 @@ public class BookController {
     }
 
     @RequestMapping("")
-    ModelAndView books() {
-        List<Book> allBooks = bookService.getAllBooks();
+    ModelAndView books(@RequestParam(value = "search", required = false) String search) {
         BooksPageModel booksPageModel = new BooksPageModel();
+        List<Book> allBooks;
+        if (search == null) {
+            allBooks = bookService.getAllBooks();
+        } else {
+            allBooks = bookService.getBookSearch(search);
+        }
         booksPageModel.setBooks(allBooks);
-
         return new ModelAndView("books", "model", booksPageModel);
     }
 

@@ -10,6 +10,17 @@
         <link rel="stylesheet" href="/styles/navbar.css"/>
         <link rel="stylesheet" href="/styles/about.css"/>
         <link rel="stylesheet" href="/styles/popup.css"/>
+
+        <style>
+            td, th {
+                border: 2px inset #aaaaaa;
+                text-align: left;
+                padding: 8px;
+                width: 100px;
+                white-space: nowrap;
+            }
+        </style>
+
     </head>
 
     <body>
@@ -18,51 +29,45 @@
             <!-- This element is replaced by the HTML in fragments/navbar.html -->
         </div>
 
-        <div class="container">
-            <h2>Member List</h2>
+        <h2>Member List</h2>
 
-            <div class="technology-list">
-                <div th:each="member : ${model.members}" class="technology">
-                    <h1 th:text="${member.name}"></h1>
-                    <small th:text="${member.member_id}"></small>
+        <a th:href="${'/members/add-member'}">Add Member</a><br>
 
-                    <a th:href="${'/members/delete-member?member_id=' + member.member_id}" class="delete-button">delete</a>
-
-                    <div class="form-popup" id="edit-member-form">
-                        <form th:action="@{/members/edit-member}" method="post" class="form-container">
-                            <h1>Edit User</h1>
-                            <b>ID</b>
-                            <input type="text" th:value=${member.member_id} name="member_id" />
-                            <b>Name</b>
-                            <input type="text" placeholder="Bob" name="new_name" required />
-                            <button type="submit" class="btn">Save Changes</button>
-                            <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
-                        </form>
-                    </div>
-                    <button class="delete-button" onclick="openForm()">Edit</button>
-                </div>
+        <form th:action="@{/members}" method="post">
+            <div class="add-tech-row">
+                <label>
+                    <span>Search: </span>
+                    <input type="text" name="search">
+                </label>
             </div>
+        </form><br>
 
-            <h2>Add a Member:</h2>
-            <form th:action="@{/members/add-member}" method="post">
-                <div class="add-tech-row">
-                    <label>
-                        <span>Member ID: </span>
-                        <input type="text" name="member_id">
-                    </label>
+        <table>
+            <tr>
+                <th>NAME 🧍</th>
+                <th>ID 💳</th>
+                <th>EDIT ✏️</th>
+                <th>DELETE ❌</th>
+            </tr>
+            <tr th:each="member : ${model.members}">
+                <td><span th:text="${member.name}"></span></td>
+                <td><span th:text="${member.member_id}"></span></td>
+                <td><button onclick="openForm()">Edit</button></td>
+                <td><a th:href="${'/members/delete-member?member_id=' + member.member_id}">Delete</a></td>
+                <div class="form-popup" id="edit-member-form">
+                    <form th:action="@{/members/edit-member}" method="post" class="form-container">
+                        <h1>Edit User</h1>
+                        <b>ID</b>
+                        <input type="text" th:value=${member.member_id} name="member_id" />
+                        <b>Name</b>
+                        <input type="text" placeholder="Bob" name="new_name" required />
+                        <button type="submit">Save Changes</button>
+                        <button type="button" onclick="closeForm()">Cancel</button>
+                    </form>
                 </div>
-                <div class="add-tech-row">
-                    <label>
-                        <span>Member Name: </span>
-                        <input type="text" name="name">
-                    </label>
-                </div>
-                <div class="add-tech-row">
-                    <span><!-- spacer --></span>
-                    <input type="submit" value="Add Member" />
-                </div>
-            </form>
-        </div>
+            </tr>
+        </table>
+
         <script>
             function openForm() {
               document.getElementById("edit-member-form").style.display = "block";
@@ -72,6 +77,7 @@
               document.getElementById("edit-member-form").style.display = "none";
             }
         </script>
+
     </body>
 
 
