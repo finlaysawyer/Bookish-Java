@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.AboutPageModel"-->
+
+    <head>
+        <title>Bookish - Add Book</title>
+
+        <link rel="stylesheet" href="/styles/general.css"/>
+        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/about.css"/>
+    </head>
+
+    <body>
+
+        <div th:replace="fragments/navbar :: navbar">
+            <!-- This element is replaced by the HTML in fragments/navbar.html -->
+        </div>
+
+        <h2>Add a Member:</h2>
+
+        <form th:action="@{/members/add-member/action}" method="post">
+            <div class="add-tech-row">
+                <label>
+                    <span>Member ID: </span>
+                    <input type="text" name="member_id">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <label>
+                    <span>Member Name: </span>
+                    <input type="text" name="name">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <span><!-- spacer --></span>
+                <input type="submit" value="Add Member" />
+            </div>
+        </form>
+
+    </body>
+
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.AboutPageModel"-->
+
+    <head>
+        <title>Bookish - View Book</title>
+
+        <link rel="stylesheet" href="/styles/general.css"/>
+        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/about.css"/>
+    </head>
+
+    <body>
+
+        <div th:replace="fragments/navbar :: navbar">
+            <!-- This element is replaced by the HTML in fragments/navbar.html -->
+        </div>
+
+        <h1>Title: <span th:text="${model.book.title}"></span></h1>
+        <h2>By: <span th:text="${model.book.author}"></span></h2>
+        <small>ISBN: <span th:text="${model.book.isbn}"></span><br></small>
+        <small>Copies: <span th:text="${model.book.copies}"></span><br></small>
+        <a th:href="${'/books/delete-book?book_id=' + model.book.book_id}" class="delete-button">delete</a>
+
+    </body>
+
+
+</html>
