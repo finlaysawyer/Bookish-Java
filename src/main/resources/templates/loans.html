@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.LoansPageModel"-->
+
+    <head>
+        <title>Bookish - Loans</title>
+
+        <link rel="stylesheet" href="/styles/general.css"/>
+        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/about.css"/>
+
+        <style>
+            td, th {
+                border: 2px inset #aaaaaa;
+                text-align: left;
+                padding: 8px;
+                width: 100px;
+                white-space: nowrap;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div th:replace="fragments/navbar :: navbar">
+            <!-- This element is replaced by the HTML in fragments/navbar.html -->
+        </div>
+
+        <h2>Loans List</h2>
+
+        <a th:href="${'/loans/add-loan'}">Add Loan</a><br>
+
+        <form th:action="@{/loans}" method="post">
+            <div class="add-tech-row">
+                <label>
+                    <span>Search: </span>
+                    <input type="text" name="search">
+                </label>
+            </div>
+        </form><br>
+
+        <table>
+            <tr>
+                <th>LOAN ID 🆔</th>
+                <th>RETURN DATE 📅</th>
+                <th>MEMBER 👨</th>
+                <th>BOOK 📚</th>
+                <th>VIEW 🔍</th>
+            </tr>
+            <tr th:each="loan : ${model.loans}">
+                <td><span th:text="${loan.loan_id}"></span></td>
+                <td><span th:text="${loan.return_date}"></span></td>
+                <td><span th:text="${loan.member_id}"></span></td>
+                <td><span th:text="${loan.book_id}"></span></td>
+                <td><a th:href="${'/loans/view-loan?loan_id=' + loan.loan_id}">View</a></td>
+            </tr>
+        </table>
+
+    </body>
+
+
+</html>
