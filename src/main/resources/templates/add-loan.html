@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.LoansPageModel"-->
+
+    <head>
+        <title>Bookish - Add Loan</title>
+
+        <link rel="stylesheet" href="/styles/general.css"/>
+        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/about.css"/>
+    </head>
+
+    <body>
+
+        <div th:replace="fragments/navbar :: navbar">
+            <!-- This element is replaced by the HTML in fragments/navbar.html -->
+        </div>
+
+        <h2>Add a loan:</h2>
+        <form th:action="@{/loans/add-loan/action}" method="post">
+            <div class="add-tech-row">
+                <label>
+                    <span>Loan ID: </span>
+                    <input type="text" name="loan_id">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <label>
+                    <span>Return Date: </span>
+                    <input type="text" name="return_date">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <label>
+                    <span>Member ID: </span>
+                    <input type="text" name="member_id">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <label>
+                    <span>Book ID: </span>
+                    <input type="text" name="book_id">
+                </label>
+            </div>
+            <div class="add-tech-row">
+                <span><!-- spacer --></span>
+                <input type="submit" value="Add loan" />
+            </div>
+        </form>
+
+    </body>
+
+
+</html>
