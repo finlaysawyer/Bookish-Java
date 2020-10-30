@@ -52,4 +52,16 @@ public class BookService extends DatabaseService {
                         .execute()
         );
     }
+
+    public void editBook(int book_id, String new_title, String new_author, String new_isbn, String new_copies) {
+        jdbi.useHandle(handle ->
+                handle.createUpdate("UPDATE books SET title = :title, author = :author, isbn = :isbn, copies = :copies WHERE book_id = :book_id")
+                        .bind("title", new_title)
+                        .bind("author", new_author)
+                        .bind("isbn", new_isbn)
+                        .bind("copies", new_copies)
+                        .bind("book_id", book_id)
+                        .execute()
+        );
+    }
 }

@@ -66,4 +66,12 @@ public class BookController {
         bookService.addBook(book);
         return new RedirectView("/books");
     }
+
+    @RequestMapping("/edit-book")
+    RedirectView editMember(@RequestParam int book_id, @RequestParam String new_title, @RequestParam String new_author, @RequestParam String new_isbn, @RequestParam String new_copies) {
+
+        bookService.editBook(book_id, new_title, new_author, new_isbn, new_copies);
+
+        return new RedirectView("/books");
+    }
 }
