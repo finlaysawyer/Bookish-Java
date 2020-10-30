@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS members (
 
 CREATE TABLE IF NOT EXISTS loans (
     loan_id int AUTO_INCREMENT,
-    return_date datetime NOT NULL,
+    return_date varchar(8) NOT NULL,
     member_id int,
     book_id int,
     PRIMARY KEY (loan_id),
