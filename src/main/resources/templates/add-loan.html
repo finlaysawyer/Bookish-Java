@@ -7,8 +7,9 @@
         <title>Bookish - Add Loan</title>
 
         <link rel="stylesheet" href="/styles/general.css"/>
-        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/navbarnew.css"/>
         <link rel="stylesheet" href="/styles/about.css"/>
+        <link rel="stylesheet" href="/styles/sf.css"/>
     </head>
 
     <body>
@@ -17,37 +18,20 @@
             <!-- This element is replaced by the HTML in fragments/navbar.html -->
         </div>
 
-        <h2>Add a loan:</h2>
-        <form th:action="@{/loans/add-loan/action}" method="post">
-            <div class="add-tech-row">
-                <label>
-                    <span>Loan ID: </span>
-                    <input type="text" name="loan_id">
-                </label>
-            </div>
-            <div class="add-tech-row">
-                <label>
-                    <span>Return Date: </span>
-                    <input type="text" name="return_date">
-                </label>
-            </div>
-            <div class="add-tech-row">
-                <label>
-                    <span>Member ID: </span>
-                    <input type="text" name="member_id">
-                </label>
-            </div>
-            <div class="add-tech-row">
-                <label>
-                    <span>Book ID: </span>
-                    <input type="text" name="book_id">
-                </label>
-            </div>
-            <div class="add-tech-row">
-                <span><!-- spacer --></span>
-                <input type="submit" value="Add loan" />
-            </div>
-        </form>
+        <div class="list-table">
+            <table>
+                <form th:action="@{/loans/add-loan/action}" method="post">
+                    <tr class="t-header">
+                        <th colspan="2" style="font-size: 30px; text-align: center;">Add Loan</th>
+                    </tr>
+                    <tr class="t-row"><td><span>Loan ID</span></td><td><input type="text" name="loan_id"></td></tr>
+                    <tr class="t-row"><td><span>Return Date</span></td><td><input type="text" name="return_date"></td></tr>
+                    <tr class="t-row"><td><span>Member ID</span></td><td><input type="text" name="member_id"></td></tr>
+                    <tr class="t-row"><td><span>Book ID</span></td><td><input type="text" name="book_id"></td></tr>
+                    <tr class="t-header"><td colspan="2" style="text-align: right;"><input type="submit" value="Submit"/></td></tr>
+                </form>
+            </table>
+        </div>
 
     </body>
 

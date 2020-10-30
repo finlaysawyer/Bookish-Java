@@ -51,7 +51,6 @@ public class BookController {
 
         List<Book> allBooks = bookService.getBook(book_id);
         ViewBookPageModel viewBookPageModel = new ViewBookPageModel();
-        System.out.println(allBooks.toString());
         viewBookPageModel.setBook(allBooks.get(0));
 
         return new ModelAndView("view-book", "model", viewBookPageModel);

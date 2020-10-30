@@ -4,11 +4,12 @@
     <!--@thymesVar id="model" type="org.softwire.training.bookish.models.page.AboutPageModel"-->
 
     <head>
-        <title>Bookish - Add Book</title>
+        <title>Bookish - Add Member</title>
 
         <link rel="stylesheet" href="/styles/general.css"/>
-        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/navbarnew.css"/>
         <link rel="stylesheet" href="/styles/about.css"/>
+        <link rel="stylesheet" href="/styles/sf.css"/>
     </head>
 
     <body>
@@ -17,26 +18,18 @@
             <!-- This element is replaced by the HTML in fragments/navbar.html -->
         </div>
 
-        <h2>Add a Member:</h2>
-
-        <form th:action="@{/members/add-member/action}" method="post">
-            <div class="add-tech-row">
-                <label>
-                    <span>Member ID: </span>
-                    <input type="text" name="member_id">
-                </label>
-            </div>
-            <div class="add-tech-row">
-                <label>
-                    <span>Member Name: </span>
-                    <input type="text" name="name">
-                </label>
-            </div>
-            <div class="add-tech-row">
-                <span><!-- spacer --></span>
-                <input type="submit" value="Add Member" />
-            </div>
-        </form>
+        <div class="list-table">
+            <table>
+                <form th:action="@{/members/add-member/action}" method="post">
+                    <tr class="t-header">
+                        <th colspan="2" style="font-size: 30px; text-align: center;">Add Member</th>
+                    </tr>
+                    <tr class="t-row"><td><span>Member ID</span></td><td><input type="text" name="member_id"></td></tr>
+                    <tr class="t-row"><td><span>Name</span></td><td><input type="text" name="name"></td></tr>
+                    <tr class="t-header"><td colspan="2" style="text-align: right;"><input type="submit" value="Submit"/></td></tr>
+                </form>
+            </table>
+        </div>
 
     </body>
 

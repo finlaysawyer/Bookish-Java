@@ -7,19 +7,9 @@
         <title>Bookish - Members</title>
 
         <link rel="stylesheet" href="/styles/general.css"/>
-        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/navbarnew.css"/>
         <link rel="stylesheet" href="/styles/about.css"/>
-        <link rel="stylesheet" href="/styles/popup.css"/>
-
-        <style>
-            td, th {
-                border: 2px inset #aaaaaa;
-                text-align: left;
-                padding: 8px;
-                width: 100px;
-                white-space: nowrap;
-            }
-        </style>
+        <link rel="stylesheet" href="/styles/sf.css"/>
 
     </head>
 
@@ -29,54 +19,36 @@
             <!-- This element is replaced by the HTML in fragments/navbar.html -->
         </div>
 
-        <h2>Member List</h2>
+        <div class="list-table">
+            <table>
+                <tr class="t-header">
+                    <th colspan="2" style="font-size: 30px; text-align: center;">Member List</th>
+                </tr>
+                <tr class="t-header">
+                    <th>
+                        <form th:action="@{/members}" method="post"><input type="text" name="search" placeholder="Search..."></form>
+                    </th>
+                    <th>
+                        <form th:action="@{/members/add-member}" method="post"><input type="submit" value="Add Member"/></form>
+                    </th>
+                </tr>
+            </table>
+        </div>
 
-        <a th:href="${'/members/add-member'}">Add Member</a><br>
-
-        <form th:action="@{/members}" method="post">
-            <div class="add-tech-row">
-                <label>
-                    <span>Search: </span>
-                    <input type="text" name="search">
-                </label>
-            </div>
-        </form><br>
-
-        <table>
-            <tr>
-                <th>NAME 🧍</th>
-                <th>ID 💳</th>
-                <th>EDIT ✏️</th>
-                <th>DELETE ❌</th>
-            </tr>
-            <tr th:each="member : ${model.members}">
-                <td><span th:text="${member.name}"></span></td>
-                <td><span th:text="${member.member_id}"></span></td>
-                <td><button onclick="openForm()">Edit</button></td>
-                <td><a th:href="${'/members/delete-member?member_id=' + member.member_id}">Delete</a></td>
-                <div class="form-popup" id="edit-member-form">
-                    <form th:action="@{/members/edit-member}" method="post" class="form-container">
-                        <h1>Edit User</h1>
-                        <b>ID</b>
-                        <input type="text" th:value=${member.member_id} name="member_id" />
-                        <b>Name</b>
-                        <input type="text" placeholder="Bob" name="new_name" required />
-                        <button type="submit">Save Changes</button>
-                        <button type="button" onclick="closeForm()">Cancel</button>
-                    </form>
-                </div>
-            </tr>
-        </table>
-
-        <script>
-            function openForm() {
-              document.getElementById("edit-member-form").style.display = "block";
-            }
-
-            function closeForm() {
-              document.getElementById("edit-member-form").style.display = "none";
-            }
-        </script>
+        <div class="list-table">
+            <table>
+                <tr class="t-header">
+                    <th>NAME 🧍</th>
+                    <th>ID 💳</th>
+                    <th>VIEW 🔍️</th>
+                </tr>
+                <tr class="t-row" th:each="member : ${model.members}">
+                    <td><span th:text="${member.name}"></span></td>
+                    <td><span th:text="${member.member_id}"></span></td>
+                    <td><form th:action="${'/members/view-member?member_id=' + member.member_id}" method="post"><input type="submit" value="View"/></form></td>
+                </tr>
+            </table>
+        </div>
 
     </body>
 

@@ -25,6 +25,14 @@ public class MemberService extends DatabaseService {
         );
     }
 
+    public List<Member> getMember(int id) {
+        return jdbi.withHandle(handle ->
+                handle.createQuery("SELECT * FROM members WHERE member_id = " + Integer.toString(id))
+                        .mapToBean(Member.class)
+                        .list()
+        );
+    }
+
     public void addMember(Member member) {
         jdbi.useHandle(handle ->
                 handle.createUpdate("INSERT INTO members VALUES (:member_id, :name)")

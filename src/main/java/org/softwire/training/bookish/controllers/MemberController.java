@@ -4,6 +4,8 @@ import org.softwire.training.bookish.models.database.Book;
 import org.softwire.training.bookish.models.database.Member;
 import org.softwire.training.bookish.models.page.BooksPageModel;
 import org.softwire.training.bookish.models.page.MembersPageModel;
+import org.softwire.training.bookish.models.page.ViewBookPageModel;
+import org.softwire.training.bookish.models.page.ViewMemberPageModel;
 import org.softwire.training.bookish.services.BookService;
 import org.softwire.training.bookish.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,16 @@ public class MemberController {
         memberService.addMember(member);
 
         return new RedirectView("/members");
+    }
+
+    @RequestMapping("/view-member")
+    ModelAndView viewMember(@RequestParam int member_id) {
+
+        List<Member> allMembers = memberService.getMember(member_id);
+        ViewMemberPageModel viewMemberPageModel = new ViewMemberPageModel();
+        viewMemberPageModel.setMember(allMembers.get(0));
+
+        return new ModelAndView("view-member", "model", viewMemberPageModel);
     }
 
     @RequestMapping("/delete-member")

@@ -1,0 +1,130 @@
+@keyframes slide-in {
+    0% {
+        transform: translateY(50px);
+        opacity: 0%;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 100%;
+    }
+}
+
+body {
+    background-image: linear-gradient(45deg,#581211,#8B4513);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+}
+
+table {
+    animation: 0.5s ease 0s 1 slide-in;
+    padding: 25px;
+}
+
+.title {
+    opacity: 0%;
+    animation: 2s forwards 0s 1 slide-in;
+    font-size: 200px;
+    font-family: "Brush Script MT", cursive;
+    color: white;
+    text-shadow: 5px 5px 3px #111111;
+    font-weight: bold;
+    margin-block-start: 20px;
+    margin-block-end: 20px;
+    background-color: rgba(30, 30, 30, 0.7);
+    border: 2px none #ffffff;
+    border-radius: 40px;
+    width: 50%;
+    text-align: center;
+}
+
+.titlesub {
+    opacity: 0%;
+    animation: 2s forwards 1s 1 slide-in;
+    font-size: 25px;
+    font-family: "Brush Script MT", cursive;
+    color: white;
+    text-shadow: 2px 2px 2px #111111;
+    margin-block-start: 10px;
+    margin-block-end: 10px;
+    background-color: rgba(30, 30, 30, 0.7);
+    border: 2px none #ffffff;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+}
+
+.list-table td, th {
+    font-size: 16px;
+    color: white;
+    border: 2px outset rgba(88, 18, 17, 1.0);
+    text-align: left;
+    padding: 8px;
+    width: 100px;
+    white-space: nowrap;
+    text-shadow: 2px 2px 1px #222222;
+}
+
+.t-header {
+    background-color: rgba(120, 120, 90, .5);
+}
+
+.t-row:nth-child(even) {
+    background-color: rgba(50, 50, 50, .5);
+}
+
+.t-row:nth-child(odd) {
+    background-color: rgba(80, 80, 80, .5);
+}
+
+.t-row:hover {
+    background-color: rgba(150, 150, 150, .5);
+}
+
+input[type=text] {
+    border: 3px outset rgba(88, 18, 17, 1.0);
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: rgba(169, 99, 49, 1.0);
+    color: white;
+    text-shadow: 1px 1px 1px #222222;
+}
+
+input[type=text]:read-only {
+    cursor: not-allowed;
+}
+
+input[type=submit] {
+    color: white;
+    text-shadow: 2px 2px 1px #222222;
+    border: 3px outset rgba(88, 18, 17, 1.0);
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: rgba(139, 69, 19, 1.0);
+    padding: 5px 15px;
+    transition: all 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+input[type=submit]:hover {
+    background-color: rgba(169, 99, 49, 1.0);
+    cursor: pointer;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgba(139, 69, 19, 1.0);
+}
+::-webkit-scrollbar-track {
+    background-color: #581211;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(169, 99, 49, 1.0);
+}
+
+::placeholder {
+    color: white;
+    opacity: 1;
+}

@@ -7,18 +7,9 @@
         <title>Bookish - Loans</title>
 
         <link rel="stylesheet" href="/styles/general.css"/>
-        <link rel="stylesheet" href="/styles/navbar.css"/>
+        <link rel="stylesheet" href="/styles/navbarnew.css"/>
         <link rel="stylesheet" href="/styles/about.css"/>
-
-        <style>
-            td, th {
-                border: 2px inset #aaaaaa;
-                text-align: left;
-                padding: 8px;
-                width: 100px;
-                white-space: nowrap;
-            }
-        </style>
+        <link rel="stylesheet" href="/styles/sf.css"/>
 
     </head>
 
@@ -28,35 +19,40 @@
             <!-- This element is replaced by the HTML in fragments/navbar.html -->
         </div>
 
-        <h2>Loans List</h2>
+        <div class="list-table">
+            <table>
+                <tr class="t-header">
+                    <th colspan="2" style="font-size: 30px; text-align: center;">Loan List</th>
+                </tr>
+                <tr class="t-header">
+                    <th>
+                        <form th:action="@{/loans}" method="post"><input type="text" name="search" placeholder="Search..."></form>
+                    </th>
+                    <th>
+                        <form th:action="@{/loans/add-loan}" method="post"><input type="submit" value="Add Loan"/></form>
+                    </th>
+                </tr>
+            </table>
+        </div>
 
-        <a th:href="${'/loans/add-loan'}">Add Loan</a><br>
-
-        <form th:action="@{/loans}" method="post">
-            <div class="add-tech-row">
-                <label>
-                    <span>Search: </span>
-                    <input type="text" name="search">
-                </label>
-            </div>
-        </form><br>
-
-        <table>
-            <tr>
-                <th>LOAN ID 🆔</th>
-                <th>RETURN DATE 📅</th>
-                <th>MEMBER 👨</th>
-                <th>BOOK 📚</th>
-                <th>VIEW 🔍</th>
-            </tr>
-            <tr th:each="loan : ${model.loans}">
-                <td><span th:text="${loan.loan_id}"></span></td>
-                <td><span th:text="${loan.return_date}"></span></td>
-                <td><span th:text="${loan.member_id}"></span></td>
-                <td><span th:text="${loan.book_id}"></span></td>
-                <td><a th:href="${'/loans/view-loan?loan_id=' + loan.loan_id}">View</a></td>
-            </tr>
-        </table>
+        <div class="list-table">
+            <table>
+                <tr class="t-header">
+                    <th>LOAN ID 🆔</th>
+                    <th>RETURN DATE 📅</th>
+                    <th>MEMBER 👨</th>
+                    <th>BOOK 📚</th>
+                    <th>VIEW 🔍</th>
+                </tr>
+                <tr class="t-row" th:each="loan : ${model.loans}">
+                    <td><span th:text="${loan.loan_id}"></span></td>
+                    <td><span th:text="${loan.return_date}"></span></td>
+                    <td><span th:text="${loan.member_id}"></span></td>
+                    <td><span th:text="${loan.book_id}"></span></td>
+                    <td><form th:action="${'/loans/view-loan?loan_id=' + loan.loan_id}" method="post"><input type="submit" value="View"/></form></td>
+                </tr>
+            </table>
+        </div>
 
     </body>
 

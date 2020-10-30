@@ -1,16 +1,13 @@
 package org.softwire.training.bookish.models.page;
 
-import org.softwire.training.bookish.models.database.Book;
+import org.softwire.training.bookish.models.database.Member;
 
-import java.util.List;
-
-public class ViewBookPageModel {
-    private Book book;
-
-    public Book getBook() {
-        return book;
+public class ViewMemberPageModel {
+    private Member member;
+    public Member getMember() {
+        return member;
     }
-    public void setBook(Book book) {
-        this.book = book;
+    public void setMember(Member member) {
+        this.member = member;
     }
 }
