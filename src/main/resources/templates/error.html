@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+    <head>
+        <title>Bookish - Error!</title>
+
+        <link rel="stylesheet" href="/styles/general.css"/>
+        <link rel="stylesheet" href="/styles/navbarnew.css"/>
+        <link rel="stylesheet" href="/styles/index.css"/>
+        <link rel="stylesheet" href="/styles/sf.css"/>
+    </head>
+
+    <body>
+
+        <div th:replace="fragments/navbar :: navbar">
+            <!-- This element is replaced by the HTML in fragments/navbar.html -->
+        </div>
+
+        <p class="title">Error!</p>
+        <p class="titlesub" style="font-family: 'Segoe UI', sans-serif;">We encountered an error.</br>
+            Are you sure all fields are completed & the member and book IDs are valid?</p>
+
+    </body>
+
+
+</html>
